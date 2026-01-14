@@ -30,6 +30,17 @@ export default class TinyChartPlugin extends Plugin {
 			},
 		});
 
+		// This inserts a bidirectional bar chart example
+		this.addCommand({
+			id: "horizontal-bar-bidirectional-example",
+			name: "Insert bidirectional barchart example",
+			editorCallback: (editor: Editor, view: MarkdownView) => {
+				editor.replaceSelection(
+					"```tinychart\nRevenue, 150\nCosts, -120\nProfit, 80\nLoss, -40\nInvestment, 200\nDebt, -180\n```"
+				);
+			},
+		});
+
 		// This replaces tinychart codeblocks with tiny horizontal bar charts
 		this.registerMarkdownCodeBlockProcessor(
 			"tinychart",

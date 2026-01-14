@@ -102,6 +102,36 @@ export default class SettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
+			.setName("Zero point character")
+			.setDesc("Character marking the zero point in bidirectional charts")
+			.addText((text) =>
+				text
+					.setPlaceholder("|")
+					.setValue(this.plugin.settings.zeroPointChar)
+					.onChange(async (value) => {
+						if (value && value.length > 1) {
+							value = value.slice(0, 1);
+							text.setValue(value);
+							new Notice("Enter only a single character");
+						}
+						this.plugin.settings.zeroPointChar = value || "|";
+						await this.plugin.saveSettings();
+					})
+			);
+
+		new Setting(containerEl)
+			.setName("Show zero point")
+			.setDesc("Display zero point marker in bidirectional charts")
+			.addToggle((toggle) =>
+				toggle
+					.setValue(this.plugin.settings.showZeroPoint)
+					.onChange(async (value) => {
+						this.plugin.settings.showZeroPoint = value;
+						await this.plugin.saveSettings();
+					})
+			);
+
+		new Setting(containerEl)
 			.setName("Chart length")
 			.setDesc("Length of barchart (excluding prefix/suffix and labels)")
 			.addSlider((text) =>

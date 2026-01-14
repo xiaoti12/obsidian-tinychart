@@ -1,6 +1,8 @@
 export interface PluginSettings {
 	fillChar: string;
 	emptyChar: string;
+	zeroPointChar: string;
+	showZeroPoint: boolean;
 	prefixChar: string;
 	suffixChar: string;
 	chartLength: number;
@@ -12,6 +14,8 @@ export interface PluginSettings {
 export const DEFAULT_SETTINGS: PluginSettings = {
 	fillChar: "█",
 	emptyChar: "-",
+	zeroPointChar: "|",
+	showZeroPoint: true,
 	prefixChar: "",
 	suffixChar: "",
 	chartLength: 20,
